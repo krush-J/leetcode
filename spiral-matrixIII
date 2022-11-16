@@ -1,0 +1,45 @@
+class Solution {
+    public int[][] spiralMatrixIII(int rows, int cols, int r, int c) {
+        int len = rows*cols, k = 0;
+        int spiralMatrix[][] = new int[len][2];
+        spiralMatrix[k++] = new int[]{r,c};
+        int right = 1, bottom = 1, left = 2, up = 2, limit;
+        while(k < len){
+            // moving to right
+            limit = c + right;
+            while(++c <= limit){
+                if(c > -1 && r > -1 && r < rows && c < cols )
+                    spiralMatrix[k++] = new int[]{r,c};
+            }
+            c--;
+            // moving to bottom
+            limit = r+bottom;
+            while(++r <= limit){
+                if(c > -1 && r > -1 && r < rows && c < cols)
+                    spiralMatrix[k++] = new int[]{r,c};
+            }
+            r--;
+            // moving to left
+            limit = c-left;
+            while(--c >= limit){
+                if(c > -1 && r > -1 && r < rows && c < cols)
+                    spiralMatrix[k++] = new int[]{r,c};
+            }
+            c++;
+            // moving to up
+            limit = r-up;
+            while(--r >= limit){
+                if(c > -1 && r > -1 && r < rows && c < cols)
+                    spiralMatrix[k++] = new int[]{r,c};
+            }
+            r++;          
+            right+=2;
+            bottom+=2;
+            left+=2;
+            up+=2;
+            //break;
+        }
+        return spiralMatrix;
+    }
+  
+}
